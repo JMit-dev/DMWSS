@@ -2,7 +2,7 @@
 
 namespace dmwss::emu {
 
-Emulator::Emulator(const Cartridge &cart) {
+Emulator::Emulator(Cartridge &cart) {
   mmu_.attach(&cart);
   cpu_.bus = &mmu_;
   cpu_.reset();

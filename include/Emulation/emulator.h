@@ -1,21 +1,23 @@
 #ifndef EMULATOR_H
 #define EMULATOR_H
-#include "cpu.h"
-#include "ppu.h"
-#include "timer.h"
+#include "Emulation/cpu.h"
+#include "Emulation/ppu.h"
+#include "Emulation/timer.h"
 
 namespace dmwss::emu {
 
 class Emulator {
 public:
-  explicit Emulator(const Cartridge &cart);
+  explicit Emulator(Cartridge &cart);
 
   /// Run enough cycles for one video frame (≈59.73 Hz)
   void frame();
 
-  /// quick access for platform layer
-  const std::array<u16, Ppu::LCD_W * Ppu::LCD_H> &framebuffer() const {
-    return ppu.frame;
+  /// quick access for a platform layer (SDL, etc.)
+  // ✱ use LCD_W/LCD_H directly (they’re in this namespace)
+  // ✱ and return ppu_.frame, not ppu.frame
+  const std::array<u16, LCD_W * LCD_H> &framebuffer() const {
+    return ppu_.frame; // ✱
   }
 
   Cpu &cpu() { return cpu_; }
@@ -28,5 +30,6 @@ private:
   Timer timer_;
   Ppu ppu_;
 };
+
 } // namespace dmwss::emu
 #endif // EMULATOR_H

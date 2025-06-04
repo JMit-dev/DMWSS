@@ -1,7 +1,7 @@
 #ifndef CPU_H
 #define CPU_H
+#include "Emulation/mmu.h"
 #include "Util/types.h"
-#include "mmu.h"
 
 namespace dmwss::emu {
 

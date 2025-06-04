@@ -1,14 +1,14 @@
 #ifndef MMU_H
 #define MMU_H
+#include "Emulation/cartridge.h"
 #include "Util/types.h"
-#include "cartridge.h"
 #include <array>
 
 namespace dmwss::emu {
 
 class Mmu {
 public:
-  void attach(const Cartridge *cart) { cart_ = cart; }
+  void attach(Cartridge *cart) { cart_ = cart; }
 
   u8 rd8(u16 addr) const;
   u16 rd16(u16 addr) const;
@@ -23,7 +23,7 @@ private:
   std::array<u8, 0xA0> oam_{};    // sprite attr
   std::array<u8, 0x7F> hram_{};   // high RAM
   u8 ie_{};                       // interrupt enable
-  const Cartridge *cart_ = nullptr;
+  Cartridge *cart_ = nullptr;
   std::array<u8, 0x10000> ram_{}; // flat mirror (simplest start)
 };
 } // namespace dmwss::emu
