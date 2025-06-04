@@ -3,7 +3,7 @@
 #include <cstdarg>
 #include <cstdio>
 
-namespace util {
+namespace dmwss::util {
 enum class Level { Debug, Info, Warn, Error };
 
 inline const char *tag(Level l) {
@@ -33,7 +33,7 @@ inline void log(Level lvl, const char *fmt, ...) {
   (void)fmt; // avoid “unused” warnings in release
 #endif
 }
-} // namespace util
+} // namespace dmwss::util
 
 #define LOG_DEBUG(...) ::util::log(::util::Level::Debug, __VA_ARGS__)
 #define LOG_INFO(...) ::util::log(::util::Level::Info, __VA_ARGS__)
