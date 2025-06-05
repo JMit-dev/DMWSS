@@ -35,8 +35,12 @@ inline void log(Level lvl, const char *fmt, ...) {
 }
 } // namespace dmwss::util
 
-#define LOG_DEBUG(...) ::util::log(::util::Level::Debug, __VA_ARGS__)
-#define LOG_INFO(...) ::util::log(::util::Level::Info, __VA_ARGS__)
-#define LOG_WARN(...) ::util::log(::util::Level::Warn, __VA_ARGS__)
-#define LOG_ERROR(...) ::util::log(::util::Level::Error, __VA_ARGS__)
+#define LOG_DEBUG(...)                                                         \
+  ::dmwss::util::log(::dmwss::util::Level::Debug, __VA_ARGS__)
+#define LOG_INFO(...)                                                          \
+  ::dmwss::util::log(::dmwss::util::Level::Info, __VA_ARGS__)
+#define LOG_WARN(...)                                                          \
+  ::dmwss::util::log(::dmwss::util::Level::Warn, __VA_ARGS__)
+#define LOG_ERROR(...)                                                         \
+  ::dmwss::util::log(::dmwss::util::Level::Error, __VA_ARGS__)
 #endif // LOG_H
